@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';  //OnInit is necessary for us
 import { Album } from '../album.model';
 import { Router } from '@angular/router';  //Important to a specific route with an ID.
 import { AlbumService } from '../album.service'; //The first step in pulling data from a database.
-
+import { FirebaseListObservable } from 'angularfire2/database'; //Required to read data from Firebase.
 @Component({
   selector: 'app-marketplace',
   templateUrl: './marketplace.component.html',
@@ -13,7 +13,9 @@ import { AlbumService } from '../album.service'; //The first step in pulling dat
 
 export class MarketplaceComponent implements OnInit {
 
-  albums: Album[]; //After the creation of the mock file, this element is no longer filly-fledged.
+  // albums: Album[]; //After the creation of the mock file, this element is no longer filly-fledged.
+  albums: FirebaseListObservable<any[]>;//Once again redefined to pull info from firebase.
+
 
   //constructor(private router: Router){}  //Second component to the ID route.
   constructor(private router: Router, private albumService: AlbumService) {}  //AlbumService is added in for importation of data.
